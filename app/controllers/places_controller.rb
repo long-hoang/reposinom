@@ -1,5 +1,7 @@
 class PlacesController < ApplicationController
 
+  before_action :authenticate_user!, only: [:new, :create] # before filter, allow editing to logged in users
+
   def index
       @places = Place.all.page(params[:page]).per(3)
   end
@@ -10,7 +12,8 @@ class PlacesController < ApplicationController
   end
 
   def create
-    Place.create(place_params) # sends values to the database
+    # Place.create(place_params) # sends values to the database
+    current_user.places.create(place_params) # create place that is connected with user
     redirect_to root_path # sends user to the root
   end
 
