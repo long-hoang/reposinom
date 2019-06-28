@@ -78,6 +78,8 @@ gem 'simple_form'
 
 gem 'font-awesome-rails'
 
+gem 'devise'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
