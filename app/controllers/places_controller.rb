@@ -1,7 +1,7 @@
 class PlacesController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :create] # before filter, allow editing to logged in users
-
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update] # before filter, allow editing to logged in users
+  # these actions in controller are available to user if logged in only
   def index
       @places = Place.all.page(params[:page]).per(3)
   end
@@ -25,10 +25,20 @@ class PlacesController < ApplicationController
 
   def edit 
     @place = Place.find(params[:id])
+
+    if @place.user != current_user
+      return render plain: 'Not Allowed', status: :forbidden
+    end 
+
   end
 
   def update
     @place = Place.find(params[:id])
+
+    if @place.user != current_user
+      return render plain: 'Not Allowed', status: :forbidden
+    end
+    
     @place.update_attributes(place_params) # update each value in fields in database, form is already set up to hook up to place_params 
     redirect_to root_path
   end
