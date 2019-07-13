@@ -56,18 +56,18 @@
 
 <div class = "clear"></div>
 <br />
-<h1>Leave a Comment!</h1> 
 <br />
 
-<br />
-<br />
+<div class = "col-10 offset-1">
+  <h1 class="float-left">Comments</h1> 
 
-
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#myModal">
+    Leave a Comment!
+  </button>
 </div>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Leave a Comment!
-</button>
+
+<div class = "clear"></div>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -98,11 +98,10 @@
   </div>
 </div>
 
-<div class = "booyah-box col-10 offset-1">
-  <h2>Comments</h2>
 
+  <div class= "row">
     <% @place.comments.each do |comment| %>
-      <div>
+      <div class="col-12 col-sm-6">
         <blockquote>
           <%if comment.humanized_rating.present? %>
             <b><%= comment.humanized_rating %></b> -
@@ -113,6 +112,5 @@
       </div>
 
     <% end %>
-
-</div>
+  </div>
 
