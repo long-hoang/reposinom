@@ -27,6 +27,7 @@ class PlacesController < ApplicationController
     
     @place = Place.find(params[:id]) # tells controller to find coorect place by passing id of each place
     @comment = Comment.new
+    @photo = Photo.new
 
   end
 

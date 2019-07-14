@@ -52,7 +52,31 @@
   </div>
 
 <br />
+<br />
+<br />
 
+<div class = "col-10 offset-1">
+  <h1 class="float-left">Photos</h1>
+  
+  <div class = "clear"></div>
+  <% @place.photos.each do |photo| %>
+        <div class="col-12 col-sm-6">
+          <%= image_tag photo.picture.url , class: 'img-fluid' %>
+          <%= photo.caption %>
+        </div>
+      <% end %>
+      <br />
+      <br />
+      <%= simple_form_for @photo, url: place_photos_path(@place) do |f| %>
+          <%= f.input :picture %>
+          <%= f.input :caption %>
+
+          <%= f.submit "Add Photo", class: 'btn btn-primary' %>
+
+  <% end %>
+</div>
+<br />
+<div class = "clear"></div>
 
 <div class = "clear"></div>
 <br />
@@ -65,7 +89,7 @@
   <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#myModal">
     Leave a Comment!
   </button>
-</div>
+
 
 <div class = "clear"></div>
 
@@ -112,5 +136,7 @@
 </div>
 
     <% end %>
+  </div>
+
   </div>
 
